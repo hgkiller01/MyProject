@@ -37,6 +37,7 @@ namespace Mvc_Repository.Controllers
                 HttpWebRequest Request3 = (HttpWebRequest)WebRequest.Create(Url2);
                 Request3.Method = "GET";
                 return Content(Sendit(Request3));
+                //test
             }
             return new EmptyResult();
         }
