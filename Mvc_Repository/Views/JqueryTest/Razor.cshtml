@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "Razor";
+    int i = 0;
+}
+@model Mvc_Repository.Models.ViewModel.StudentViewModel
+@using MvcCheckBoxList.Model
+@using Mvc_Repository.Helper;
+@section styles{
+    <style>
+        .killmy{
+            width:200px;
+        }
+        .killmy .spkill .link{
+            color:darkgreen;
+        }
+        .killmy,.spkill,.link{
+            color:purple;
+        }
+    </style>
+}
+@section scripts{
+    <script>
+        var query = encodeURI("select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"新北市\")")
+        $.ajax({
+            url: "https://query.yahooapis.com/v1/public/yql?q=" + query + "&format=json&callback=?",
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                var w_code = weather_con[data.query.results.channel.item.condition.code.toString()];
+                var w_temp = Math.round((data.query.results.channel.item.condition.temp - 32) * 5 / 9) + "℃";
+                console.log(data);
+                console.log(w_code);
+                console.log(w_temp);
+            }
+        });
+        //$.getJSON('https://query.yahooapis.com/v1/public/yql?q='+ query +'&format=json&callback=?',
+        //    function (json) {
+        //    var w_code = weather_con[json.query.results.channel.item.condition.code.toString()];
+        //    var w_temp = Math.round((json.query.results.channel.item.condition.temp - 32) * 5 / 9) + "℃";
+        //    console.log(json);
+        //    console.log(w_code);
+        //    console.log(w_temp);
+        //    $.each(json.query.results.channel.item.forecast, function (i, e) {
+        //        console.log(weather_con[e.code.toString()])
+        //        console.log(Math.round((e.high - 32) * 5 / 9));
+        //    })
+        //    });
+        weather_con = {
+            "0": "龍捲風",
+            "1": "熱帶風暴",
+            "2": "颶風",
+            "3": "強雷陣雨",
+            "4": "雷陣雨",
+            "5": "混合雨雪",
+            "6": "混合雨雪",
+            "7": "混合雨雪",
+            "8": "冰凍小雨",
+            "9": "細雨",
+            "10": "凍雨",
+            "11": "陣雨",
+            "12": "陣雨",
+            "13": "飄雪",
+            "14": "陣雪",
+            "15": "吹雪",
+            "16": "下雪",
+            "17": "冰雹",
+            "18": "雨雪",
+            "19": "多塵",
+            "20": "多霧",
+            "21": "陰霾",
+            "22": "多煙",
+            "23": "狂風大作",
+            "24": "有風",
+            "25": "冷",
+            "26": "多雲",
+            "27": "晴間多雲（夜）",
+            "28": "晴間多雲（日）",
+            "29": "晴間多雲（夜）",
+            "30": "晴間多雲（日）",
+            "31": "清晰的（夜）",
+            "32": "晴朗",
+            "33": "晴朗（夜）",
+            "34": "晴朗（日）",
+            "35": "雨和冰雹",
+            "36": "炎熱",
+            "37": "雷陣雨",
+            "38": "零星雷陣雨",
+            "39": "零星雷陣雨",
+            "40": "零星雷陣雨",
+            "41": "大雪",
+            "42": "零星陣雪",
+            "43": "大雪",
+            "44": "多雲",
+            "45": "雷陣雨",
+            "46": "陣雪",
+            "47": "雷陣雨",
+            "3200": "資料錯誤"
+        };
+        
+    </script>
+}
+<h2>Razor</h2>
+@if (ViewBag.Sex == "F")
+{
+    <p style="color:pink">@("女")</p>
+}
+else
+{
+    <p style="color:blue">@("男")</p>
+}
+<p>@((ViewBag.Sex == "F") ? "女" : "男")</p>
+<p>
+    @Html.DropDownList("abc", ViewBag.All as SelectList)
+</p>
+<p>
+    @Html.DropDownList("DDD", ViewBag.Student as SelectList)
+</p>
+<form action="@Url.Action("Razor2")" method="post">
+    <p>
+
+        @Html.CheckBoxListFor(model => model.PostedStudent.StudentIds,
+                        model => model.AvailableStudent,
+                        Studnet => Studnet.StudnetID,
+                        Studnet => Studnet.Name,
+                        model => model.SelectedStudent,
+                        Position.Vertical)
+    </p>
+    <p>
+        <input type="submit" value="送出" />
+    </p>
+</form>
+<p>
+    @Html.DropDownList("BBB", ViewBag.lists as MultiSelectList, new { multiple = "multiple",style = "width:200px;" })
+</p>
+<p>
+    @foreach (var item in ViewBag.lists as MultiSelectList)
+    {
+        i++;
+        if (item.Selected)
+        {
+            <label><input type="checkbox" checked name="SSS" value="@item.Value" />@item.Text</label>
+        }
+        else
+        {
+            <label><input type="checkbox" name="SSS" value="@item.Value" />@item.Text</label>
+        }
+        if (i % 2 == 0)
+        {
+            <br />
+        }
+
+    }
+</p>
+@myTest.testhelper("M")
+@Html.RadioGenerate("這是測試", "kill", "20", new { @class="pp ii" })
+<p class="killmy">
+    <span class="spkill">
+        <a href="#" class="link">
+            點我測試
+        </a>
+    </span>
+</p>
+<a class="killmy spkill link">
+    點我測試2
+</a>
+@*@radioHelper.RadioGenerate("這是測試","kill","20","mile,pdd")*@

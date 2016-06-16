@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "EasyUI3";
+}
+@section scripts{
+<script src="@Url.Action("ReturnJS")"></script>
+}
+@section styles{
+
+}
+<h2>EasyUI3</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.Label("輸入訊息")
+        <input type="text" name="Content" />
+        @Html.Label("發言人")
+        <input type="text" name="UserId" />
+        @Html.Label("時間(不用填)")
+        <input type="date" name="Time" />
+    </div>
+    <div>
+        你輸入的為:@ViewData["Content"] <br />
+        使用者名稱為:@ViewData["UserId"] <br />
+        發言時間:@ViewData["Time"] <br />
+    </div>
+    <div style="color:red">
+        @ViewData["Error"]
+    </div>
+    @Html.Image("test", "http://i67.tinypic.com/jj0jgz.jpg", "test2")
+    <input type="submit" value="送出" />
+}

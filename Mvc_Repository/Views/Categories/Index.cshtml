@@ -1,0 +1,53 @@
+﻿@model List<Mvc_Repository.Models.Categories>
+
+@{
+    ViewBag.Title = "Index";
+    @*取得總行數*@
+    int trcount = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Model.Count()) / 3));
+    @*設定每行幾列*@
+    int rowcount = 3;
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    @*依照有幾行跑tr迴圈*@
+    @for (int i = 0; i < trcount; i++)
+    {
+        <tr>
+            @*每行有幾列砲td迴圈*@
+            @for (int k = 0; k < rowcount; k++)
+            {
+                @*暫存目前行數*@
+                int row = i;
+                @*判斷是否為第一行*@
+                if (k % rowcount > 0)
+                {
+                    @*不是第一行就要取得List裡的元素位置 則為 目前行數 + (所有列數 * 目前列數) *@
+                    row += rowcount * k;
+                }
+
+                @*判斷元素位置是否超過 Model的最大元素*@
+                if (row > (Model.Count() - 1))
+                {
+                    @*若超過則跳出td迴圈*@
+                    break;
+                }
+
+                <td>
+                    @*列出目標元素位置的資料*@
+
+                    @Model[row].CategoryName
+                </td>
+            }
+
+
+        </tr>
+    }
+
+</table>
+
+
+

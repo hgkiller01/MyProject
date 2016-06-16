@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        //接收父視窗傳值
+        function setValue() {
+            document.getElementById("divFromParent").innerHTML = window.dialogArguments;
+
+        }
+        //返回父視窗，並回傳值
+        function retParantWin() {
+            //alert(document.getElementById("txtChild").value);
+            window.returnValue = document.getElementById("txtChild").value;
+            window.close();
+        }
+    </script>
+    <title></title>
+</head>
+<body onload="setValue()">
+    <form>
+        Child
+
+        父視窗傳值:<div id="divFromParent"> 1</div>
+        本視窗(子)輸入:<input id="txtChild" type="text" />
+        <input id="Button1" type="button" value="返回父視窗" onclick="retParantWin();" />
+    </form>
+</body>
+</html>

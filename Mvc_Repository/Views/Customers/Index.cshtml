@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section styles{
+    <link href="~/Content/easyui/themes/default/easyui.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Content/easyui/jquery.easyui.min.js"></script>
+    <script>
+        $(function () {
+            $("#OpenWindow").click(function () {
+                $("#win").window("open");
+            })
+            $("#DataGrid").datagrid({
+                title: "示範分頁",
+                url: '@Url.Action("GetCustomers")',
+                width: "800",
+                height: "400",
+                rownumbers: true,
+                sortName: 'CustomerID',
+                sortOrder: "asc",
+                multiSort: true,
+                columns: [[
+                        { field: 'CustomerID', title: '客戶ID', sortable: true },
+                        { field: 'CompanyName', title: '公司名稱', sortable: true },
+                        { field: 'ContactName', title: '聯絡電話', sortable: true },
+                        { field: 'ContactTitle', title: '聯絡項目'},
+                        { field: 'Address', title: '地址' },
+                        { field: 'City', title: '城市', sortable: true },
+                        { field: 'Region', title: '區域' },
+                        { field: 'Country', title: '國家' },
+                        { field: 'Phone', title: '電話' },
+                        { field: 'Fax', title: '傳真' }
+                ]],
+                pagination: true,
+                pagePosition: "bottom",
+                pagesize: 10
+            })
+            var pager = $("#DataGrid").datagrid("getpager");
+            $(pager).pagination({
+                pageSize: 10,
+                showPageList: true,
+                pageList: [10, 20, 50],
+                beforePageText: "第",
+                afterPageText: "頁，共 {pages} 頁",
+                displayMsg: "顯示 {from} 到 {to} 筆資料，共 {total} 筆資料"
+            })
+
+            
+        });
+
+    </script>
+}
+<h2>Jquery 分頁</h2>
+<table id="DataGrid"></table>
+<button id="OpenWindow">打開Window</button>
+<div id="win" class="easyui-window" title="My Window" closed="true" style="width:300px;height:100px;padding:5px;">
+    Some Content.
+</div>

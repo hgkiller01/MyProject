@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "GridViews";
+}
+@section styles{
+<link href="~/Content/easyui/themes/default/easyui.css" rel="stylesheet" />
+}
+@section scripts{
+<script src="~/Content/easyui/jquery.easyui.min.js"></script>
+    <script>
+        $(function () {
+            $("#DataGrid").datagrid({
+                title: "示範DataGrid",
+                url: '@Url.Action("GetGridResut")',
+                width: "600",
+                height: "300",
+                rownumbers: true,
+                columns: [[
+                    { field: "CategoryID", title: "類別ID" },
+                    { field: "CategoryName", title: "類別名稱" },
+                    { field: "Description", title: "說明" }
+                ]]
+            });
+
+        })
+    </script>
+}
+<h2>Jquery EasyUI</h2>
+<div id="DataGrid"></div>
+

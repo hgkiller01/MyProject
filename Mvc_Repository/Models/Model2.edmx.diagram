@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="47fb453888d54a05a5685f59bd20a046" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="FLBKModel.Action_D" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.Action_LM" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.Action_M" Width="1.5" PointX="5.75" PointY="12.75" />
+        <EntityTypeShape EntityType="FLBKModel.Action_Type" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FLBKModel.adminallowip" Width="1.5" PointX="7.75" PointY="12.75" />
+        <EntityTypeShape EntityType="FLBKModel.adminip" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="FLBKModel.AdminMenu" Width="1.5" PointX="14.75" PointY="8.75" />
+        <EntityTypeShape EntityType="FLBKModel.Adminsales" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.Adminuser" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="FLBKModel.App_Banner" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="FLBKModel.AppMessage" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="FLBKModel.Article_D" Width="1.5" PointX="15" PointY="15.5" />
+        <EntityTypeShape EntityType="FLBKModel.Article_M" Width="1.5" PointX="12.75" PointY="15" />
+        <EntityTypeShape EntityType="FLBKModel.Article_Tag" Width="1.5" PointX="15.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.Article_Tag_R" Width="1.5" PointX="7.75" PointY="15.75" />
+        <EntityTypeShape EntityType="FLBKModel.Banner" Width="1.5" PointX="9.75" PointY="15.75" />
+        <EntityTypeShape EntityType="FLBKModel.Banner_Type" Width="1.5" PointX="15.75" PointY="11.75" />
+        <EntityTypeShape EntityType="FLBKModel.City" Width="1.5" PointX="4.75" PointY="16.75" />
+        <EntityTypeShape EntityType="FLBKModel.ClaimTemp" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FLBKModel.Collect" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.Contact" Width="1.5" PointX="17.75" PointY="11.75" />
+        <EntityTypeShape EntityType="FLBKModel.CustomerService_Data" Width="1.5" PointX="17.75" PointY="15.75" />
+        <EntityTypeShape EntityType="FLBKModel.DiaryIndexArticle" Width="1.5" PointX="17.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.DiaryIndexTop_Image" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="FLBKModel.Evaluation" Width="1.5" PointX="18.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FLBKModel.Famous_D" Width="1.5" PointX="6.75" PointY="18.75" />
+        <EntityTypeShape EntityType="FLBKModel.Famous_M" Width="1.5" PointX="11.75" PointY="18.75" />
+        <EntityTypeShape EntityType="FLBKModel.Follow" Width="1.5" PointX="13.75" PointY="18.75" />
+        <EntityTypeShape EntityType="FLBKModel.Friends" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.FuncData" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="FLBKModel.FuncModuleData" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="FLBKModel.FuncPlay" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="FLBKModel.Hotel_Bed" Width="1.5" PointX="2.75" PointY="19.75" />
+        <EntityTypeShape EntityType="FLBKModel.HotelRoom" Width="1.5" PointX="8.75" PointY="19.75" />
+        <EntityTypeShape EntityType="FLBKModel.HotelRoom_CancelPolicy" Width="1.5" PointX="19.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FLBKModel.HotelRoom_Set" Width="1.5" PointX="19.75" PointY="13.75" />
+        <EntityTypeShape EntityType="FLBKModel.Image_M" Width="1.5" PointX="0.75" PointY="12" />
+        <EntityTypeShape EntityType="FLBKModel.Image_Navigation" Width="1.5" PointX="19.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.Image_R" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="FLBKModel.IndexBanner" Width="1.5" PointX="15.75" PointY="19.75" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_D" Width="1.5" PointX="13" PointY="2" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_Estimate" Width="1.5" PointX="13" PointY="5.625" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_Facility_Items" Width="1.5" PointX="19.75" PointY="17.75" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_Facility_R" Width="1.5" PointX="20.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_Icon" Width="1.5" PointX="17.75" PointY="20.75" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_M" Width="1.5" PointX="10.75" PointY="1.25" />
+        <EntityTypeShape EntityType="FLBKModel.LandMark_S" Width="1.5" PointX="19.75" PointY="20.75" />
+        <EntityTypeShape EntityType="FLBKModel.MarketingText" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.MemberImage_M" Width="1.5" PointX="4.75" PointY="21.75" />
+        <EntityTypeShape EntityType="FLBKModel.MemberImage_R" Width="1.5" PointX="21.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.Members" Width="1.5" PointX="21.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FLBKModel.Members_D" Width="1.5" PointX="21.75" PointY="19.75" />
+        <EntityTypeShape EntityType="FLBKModel.Merchant" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="FLBKModel.Merchant_Pay2go" Width="1.5" PointX="10.75" PointY="22.75" />
+        <EntityTypeShape EntityType="FLBKModel.Message" Width="1.5" PointX="12.75" PointY="22.75" />
+        <EntityTypeShape EntityType="FLBKModel.Number" Width="1.5" PointX="22.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FLBKModel.Order_CNumber" Width="1.5" PointX="21.75" PointY="22.75" />
+        <EntityTypeShape EntityType="FLBKModel.Order_Company" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.Order_Paymethod" Width="1.5" PointX="23.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.Orders" Width="1.5" PointX="23.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FLBKModel.PV" Width="1.5" PointX="14.75" PointY="23.75" />
+        <EntityTypeShape EntityType="FLBKModel.PV_Log" Width="1.5" PointX="23.75" PointY="16.75" />
+        <EntityTypeShape EntityType="FLBKModel.ReturnQuestion" Width="1.5" PointX="16.75" PointY="23.75" />
+        <EntityTypeShape EntityType="FLBKModel.Share" Width="1.5" PointX="18.75" PointY="23.75" />
+        <EntityTypeShape EntityType="FLBKModel.sysdiagrams" Width="1.5" PointX="23.75" PointY="19.75" />
+        <EntityTypeShape EntityType="FLBKModel.Tag_Class" Width="1.5" PointX="23.75" PointY="22.75" />
+        <EntityTypeShape EntityType="FLBKModel.Tag_D" Width="1.5" PointX="8" PointY="7" />
+        <EntityTypeShape EntityType="FLBKModel.Tag_M" Width="1.5" PointX="5.75" PointY="7.5" />
+        <EntityTypeShape EntityType="FLBKModel.Tag_R" Width="1.5" PointX="8" PointY="9.625" />
+        <EntityTypeShape EntityType="FLBKModel.Tag_Relation" Width="1.5" PointX="24.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FLBKModel.TaiwanCity" Width="1.5" PointX="25.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FLBKModel.TaiwanCity_ZipCode" Width="1.5" PointX="25.75" PointY="3.75" />
+        <EntityTypeShape EntityType="FLBKModel.Trip_D" Width="1.5" PointX="13" PointY="11.125" />
+        <EntityTypeShape EntityType="FLBKModel.Trip_M" Width="1.5" PointX="10.75" PointY="10" />
+        <EntityTypeShape EntityType="FLBKModel.Trip_Unused" Width="1.5" PointX="25.75" PointY="9.75" />
+        <EntityTypeShape EntityType="FLBKModel.TripChoice" Width="1.5" PointX="25.75" PointY="12.75" />
+        <EntityTypeShape EntityType="FLBKModel.TripChoice_Type" Width="1.5" PointX="25.75" PointY="16.75" />
+        <EntityTypeShape EntityType="FLBKModel.ArticleReport" Width="1.5" PointX="25.75" PointY="19.75" />
+        <EntityTypeShape EntityType="FLBKModel.CustomerService_DataLog" Width="1.5" PointX="20.75" PointY="25.75" />
+        <EntityTypeShape EntityType="FLBKModel.CustomerService_ReplyLog" Width="1.5" PointX="25.75" PointY="22.75" />
+        <EntityTypeShape EntityType="FLBKModel.MarketingImg" Width="1.5" PointX="22.75" PointY="25.75" />
+        <EntityTypeShape EntityType="FLBKModel.Members_LoginLog" Width="1.5" PointX="24.75" PointY="25.75" />
+        <EntityTypeShape EntityType="FLBKModel.MessageReport" Width="1.5" PointX="2.75" PointY="26.75" />
+        <EntityTypeShape EntityType="FLBKModel.OrderDetail" Width="1.5" PointX="4.75" PointY="26.75" />
+        <AssociationConnector Association="FLBKModel.FK_Adminuser_FuncPlay" />
+        <AssociationConnector Association="FLBKModel.FK_Article_D_Article_M" />
+        <AssociationConnector Association="FLBKModel.FK_FuncModuleData_FuncData" />
+        <AssociationConnector Association="FLBKModel.FK_Image_R_Image_M" />
+        <AssociationConnector Association="FLBKModel.FK_LandMark_D_LandMark_M" />
+        <AssociationConnector Association="FLBKModel.FK_LandMark_Estimate_LandMark_M" />
+        <AssociationConnector Association="FLBKModel.FK_Tag_D_Tag_M" />
+        <AssociationConnector Association="FLBKModel.FK_Tag_R_Tag_M" />
+        <AssociationConnector Association="FLBKModel.FK_Trip_D_Trip_M" />
+        <AssociationConnector Association="FLBKModel.FuncDefault" />
+        <AssociationConnector Association="FLBKModel.FuncRole" />
+        <EntityTypeShape EntityType="FLBKModel.Event_Data" Width="1.5" PointX="7.375" PointY="26.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

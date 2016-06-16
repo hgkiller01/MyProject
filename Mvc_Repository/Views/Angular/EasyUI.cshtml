@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "EasyUI";
+}
+@section styles{
+    <link href="~/Content/themes/color.css" rel="stylesheet" />
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/jquery.easyui-1.4.3.js"></script>
+    <script>
+    $(function () {
+
+    })
+    function newUser() {
+        $('#dlg').dialog('open').dialog('setTitle', 'New User');
+        $('#fm').form('clear');
+        url = '@Url.Action("GetJson")';
+    }
+    function editUser() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', 'Edit User');
+            $('#fm').form('load', row);
+            url = '@Url.Action("GetOne")?id=' + row.CategoryID;
+            }
+        }
+        function saveUser() {
+            $('#fm').form('submit', {
+                url: '@Url.Action("TestOne")',
+                onSubmit: function () {
+                    return $(this).form('validate');
+                },
+                success: function (result) {
+                    var result =  JSON.parse(result)
+                    if (result.errorMsg) {
+                        $.messager.show({
+                            title: 'Error',
+                            msg: result.errorMsg
+                        });
+                    } else {
+                        $('#dlg').dialog('close');		// close the dialog
+                        $('#dg').datagrid('reload');	// reload the user data
+                    }
+                }
+            });
+        }
+    </script>
+
+}
+<h2>EasyUI</h2>
+
+<table id="dg" title="My Users" class="easyui-datagrid" style="width:550px;height:250px"
+       url="@Url.Action("GetJson")"
+       toolbar="#toolbar"
+       rownumbers="true" fitcolumns="true" singleselect="true">
+    <thead>
+        <tr>
+            <th field="CategoryID" width="50">CategoryID</th>
+            <th field="CategoryName" width="50">CategoryName</th>
+            <th field="Description" width="50">Description</th>
+        </tr>
+    </thead>
+</table>
+<div id="toolbar">
+    <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="newUser()">New User</a>
+    <a href="#" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+    <a href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+</div>
+<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
+     closed="true" buttons="#dlg-buttons">
+    <div class="ftitle">User Information</div>
+    <form id="fm" method="post">
+        <div class="fitem">
+            <label>CategoryName:</label>
+            <input name="CategoryName" class="easyui-validatebox" required>
+        </div>
+        <div class="fitem">
+            <label>Description:</label>
+            <input name="Description" class="easyui-validatebox" required>
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="#" class="easyui-linkbutton" iconcls="icon-ok" onclick="saveUser()">Save</a>
+    <a href="#" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+</div>
+<ul class="easyui-tree">
+    <li>
+        <span>Folder</span>
+        <ul>
+            <li>
+                <span>Sub Folder 1</span>
+                <ul>
+                    <li><span><input type="checkbox" name="1" /> File 11</span></li>
+                    <li><span>File 12</span></li>
+                    <li><span>File 13</span></li>
+                </ul>
+            </li>
+            <li><span>File 2</span></li>
+            <li><span>File 3</span></li>
+        </ul>
+    </li>
+    <li><span>File21</span></li>
+</ul>
+<ul id="tt" class="easyui-tree"
+    url="data/tree_data.json"
+    checkbox="true"></ul>

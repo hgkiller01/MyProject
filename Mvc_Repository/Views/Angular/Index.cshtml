@@ -1,0 +1,226 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section scripts{
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.firstName = "John";
+            $scope.lastName = "Doe";
+        });
+        app.controller("taxCtrl", function ($scope) {
+            $scope.price = 10;
+            $scope.amount = 1;
+        })
+        app.controller("ChangeCtrl", function ($scope) {
+            $scope.ChangeColor = function () {
+                $scope.myCol2 = $scope.myCol;
+            }
+        })
+        app.directive("w3TestDirective", function () {
+            return {
+                template: "I was made in a directive constructor!"
+            };
+        })
+        app.directive('hello', function () {
+            return {
+                restrict: 'EA',
+                template: '<div>hello world!</div>'
+            };
+        });
+        app.controller('namesCtrl', function ($scope) {
+            $scope.names = [
+                { name: 'Jani', country: 'Norway' },
+                { name: 'Carl', country: 'Sweden' },
+                { name: 'Margareth', country: 'England' },
+                { name: 'Hege', country: 'Norway' },
+                { name: 'Joe', country: 'Denmark' },
+                { name: 'Gustav', country: 'Sweden' },
+                { name: 'Birgit', country: 'Denmark' },
+                { name: 'Mary', country: 'England' },
+                { name: 'Kai', country: 'Norway' }
+            ];
+        });
+        app.controller('SelectCtrl', function ($scope) {
+            $scope.names = ["Emil", "Tobias", "Linus"];
+        });
+        app.controller('TableCtrl', function ($scope, $http) {
+            var data;
+            $http({
+                method: "POST",
+                url: '@Url.Action("GetJson")',
+                data:{}
+            }).then(function mySucces(response) {
+                $scope.Categories = response.data;
+                $scope.selectedName = $scope.Categories[0].CategoryName;
+               
+            }, function myError(response) {
+                $scope.Categories = response.statusText;
+            });
+            
+        });
+        app.controller('SelectCtrl', function () {
+
+            this.myoptions = [
+              { value: 'cat', label: 'Fluffy' },
+              { value: 'dog', label: 'Rover' }
+            ];
+            this.myvar = this.myoptions[1];
+
+        });
+        app.controller("BindCtrl", function ($scope) {
+            $scope.ChangeText = function () {
+                $(".Master").val($scope.Master)
+            }
+        })
+    </script>
+}
+@section styles{
+ <style>
+    table, th, td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+</style>
+}
+<h2>Index</h2>
+
+<p>Name : <input type="text" ng-model="name"></p>
+<h1>Hello {{name}}</h1>
+
+<div ng-init="firstName='John'">
+
+    <p>The name is <span ng-bind="firstName"></span></p>
+
+</div>
+<p>My first expression: {{ 5 + 5 }}</p>
+
+<div ng-controller="myCtrl">
+
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+
+</div>
+<div ng-controller="taxCtrl">
+    價格 : <input type="text" ng-model="price" /><br />
+    數量 : <input type="text" ng-model="amount" /><br />
+    總金額 : {{price * amount}}
+</div>
+<div ng-controller="ChangeCtrl">
+    <select ng-change="ChangeColor()" ng-init="myCol='red'" ng-model="myCol">
+        <option selected="selected">red</option>
+        <option>green</option>
+        <option>yellow</option>
+        <option>blue</option>
+    </select>
+    <br />
+    <input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+
+</div>
+<div w3-test-directive></div>
+<hello></hello>
+<form name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+    <button>送出</button>
+</form>
+<div ng-controller="namesCtrl">
+
+    <p>Looping with objects:</p>
+    <p>
+        <select ng-init="Order='country'" ng-model="Order">
+            <option value="country">country</option>
+            <option value="name">name</option>
+        </select>
+        <input type="text" ng-model="Search" />
+    </p>
+    <ul>
+        <li ng-repeat="x in names | orderBy: Order:true | filter : Search">
+            {{ x.name + ', ' + x.country }}
+        </li>
+    </ul>
+
+</div>
+<div ng-controller="SelectCtrl">
+
+    <select ng-init="selectedName = options[0]" ng-model="selectedName" ng-options="x for x in names"></select>
+
+</div>
+<div>
+    5 * {{prices}} = {{5*prices}}
+    <br />
+    <input type="number" ng-model="prices" ng-init="prices=100" />
+</div>
+<div data-ng-init="firstName='John'">
+    <input type="text" data-ng-model="firstName" />
+    <p>姓名為 <span data-ng-bind="firstName"></span></p>
+
+</div>
+<form method="post" action="@Url.Action("Index")">
+    <div ng-controller="TableCtrl">
+        <select style="width:200px;"
+                class="form-control"
+                ng-model="selectedName"
+                name="test">
+            <option ng-repeat="c in Categories" value="{{c.CategoryName}}">{{c.CategoryName}}</option>
+        </select>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>名稱</th>
+                <th>詳細</th>
+            </tr>
+            <tr ng-repeat="c in Categories">
+                <td>{{c.CategoryID}}</td>
+                <td>{{c.CategoryName}}</td>
+                <td>{{c.Description}}</td>
+            </tr>
+        </table>
+    </div>
+    <input type="submit" value="送出" />
+</form>
+
+
+
+<div ng-controller="SelectCtrl as sel">
+    <p>
+        Select with no default option:
+        <select ng-model="sel.myvar" ng-options="opt.label for opt in sel.myoptions"></select>
+    </p>
+
+    <p>
+        Select with default option:
+        <select ng-model="sel.myvar" ng-options="opt.label for opt in sel.myoptions">
+            <option value="">-- please choose an animal --</option>
+        </select>
+    </p>
+
+    <button ng-click="sel.myvar=sel.myoptions[0]">cat</button>
+    <button ng-click="sel.myvar=sel.myoptions[1]">dog</button>
+    <button ng-click="sel.myvar={value:'fish',label:'Bubbles'}">fish</button>
+
+   
+</div>
+<div ng-controller="BindCtrl">
+    <input type="text" ng-change="ChangeText()" ng-model="Master" />
+    <input type="text" class="Master" value="222" />
+    <input type="text" class="Master" value="fff" />
+    <input type="text" class="Master" value="2222s" />
+    <input type="text" class="Master" value="dddd" />
+    <input type="text" class="Master" value="ggg" />
+    <input type="text" class="Master" value="hhh" />
+</div>
+ 

@@ -1,0 +1,87 @@
+﻿[
+
+  {
+
+    "id": "6d9c5dac-149e-4032-bf9e-92f126905144",
+
+    "text": "Root",
+
+    "children": [
+
+      {
+
+        "id": "21e7c543-c997-4eb3-ac23-5b9c4a7f9362",
+
+        "text": "Level_1"
+
+      },
+
+      {
+
+        "id": "14ab95ad-e854-4303-a76e-72e9372b80e8",
+
+        "text": "Level_2",
+
+        "children": [
+
+          {
+
+            "id": "37072189-49eb-4c4c-b609-b7d6d8e3254e",
+
+            "text": "Level_6",
+
+            "children": [
+
+              {
+
+                "id": "5cd028cc-c671-4c5d-afb7-5967ec8d7639",
+
+                "text": "_Level_7"
+
+              }
+
+            ]
+
+          }
+
+        ]
+
+      },
+
+      {
+
+        "id": "ae9c17ac-5132-4230-b417-faf55ad615cf",
+
+        "text": "Level_3",
+
+        "children": [
+
+          {
+
+            "id": "d096d40f-131d-4082-b062-a1b5552c81e0",
+
+            "text": "Level_4",
+
+            "children": [
+
+              {
+
+                "id": "99249963-1430-41f5-b66c-253a02d6cb41",
+
+                "text": "Level_5"
+
+              }
+
+            ]
+
+          }
+
+        ]
+
+      }
+
+    ]
+
+  }
+
+]

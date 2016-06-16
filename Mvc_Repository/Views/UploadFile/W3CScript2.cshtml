@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>W3CScript2</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            $(".opener").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetPart")',
+                    dataType: "html",
+                    success: function (data) {
+                        $("#write").append(data);
+                    }
+                })
+                return false;
+                
+            })
+            var data = { x: 1, y: 2 };
+            $("#SaveStorage").click(function () {
+                localStorage.setItem("username", JSON.stringify(data));
+            })
+            $("#ShowName").click(function () {
+                if (!localStorage["username"]) {
+                    alert("資料不存在"); 
+                }
+                else {
+                    data = JSON.parse(localStorage["username"]);
+                    alert(data.x + "\t" + data.y);
+                }
+                //alert(sessionStorage.username.x);
+                
+            })
+            $("#delbtn").click(function () {
+                localStorage.removeItem("username");
+            })
+            window.onstorage = function () {
+                alert("123");
+            }
+            $(window).bind('storage', function (e) {
+                alert(e.originalEvent.key + "\t" + e.originalEvent.newValue);
+            });
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
+                alert("你現在的位置:" + latitude + ", " + longitude);
+            })
+        })
+      
+    </script>
+</head>
+<body>
+    <button class="opener">回復事件</button>
+    <p>这是一个段落。</p>
+    <p>这是另一个段落。</p>
+    <p>点击任何段落可以令其消失。包括本段落。</p>
+    <button class="closer">从所有元素删除由 delegate() 方法添加的事件处理器</button>
+    <div id="write"></div>
+    <input type="text" name="pot" id="name" />
+    <button id="SaveStorage">儲存</button>
+    <button id="ShowName">顯示儲存的Storage</button>
+    <button id="delbtn">刪除資料</button>
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Index3";
+}
+@section scripts{
+
+    <script>
+        var app = angular.module('myApp', []);
+        //app.controller('validateCtrl', function ($scope) {
+        //    $scope.user = 'John Doe';
+        //    $scope.email = 'john.doe@gmail.com';
+        //});
+        app.controller("MainController", function () {
+            this.data = "world";
+        });
+        app.controller("ParentController", function ($rootScope) {
+            $rootScope.data = "Parent!!";
+        });
+        app.controller("ChildController", function ($rootScope) {
+            $rootScope.data = "Child!";
+        })
+    </script>
+}
+<h2>Index3</h2>
+
+
+<form action="@Url.Action("Index3")" method="post" name="form1">
+
+    <input type="text"
+           name="account"
+           ng-model="userAccount"
+           ng-minlength="3"
+           ng-maxlength="5"
+           autocomplete="off"
+           required /><br />
+    <span style="color:red" ng-show="form1.account.$error.required && form1.account.$dirty">此為必填</span>
+    <span style="color:red" ng-show="form1.account.$error.minlength">最少三個字</span>
+    <span style="color:red" ng-show="form1.account.$error.maxlength">最多五個字</span>
+    {{ form1.account.$error }}
+    <input ng-disabled="form1.account.$invalid" type="submit" value="送出" />
+</form>
+
+<form name="myForm"
+      novalidate>
+
+    <p>
+        用戶名:<br>
+        <input type="text" name="user" ng-model="user" required>
+        <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+            <span ng-show="myForm.user.$error.required">用戶名是必須的。</span>
+        </span>
+    </p>
+
+    <p>
+        郵箱:<br>
+        <input type="email" name="email" ng-model="email" required>
+        <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+            <span ng-show="myForm.email.$error.required">郵箱是必須的。</span>
+            <span ng-show="myForm.email.$error.email">非法的郵箱。</span>
+        </span>
+    </p>
+
+    <p>
+        <input type="submit"
+               ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+                 myForm.email.$dirty && myForm.email.$invalid">
+    </p>
+
+</form>
+<input type="checkbox" ng-model="master">
+<input type="checkbox" ng-checked="master">
+<div ng-controller="MainController as main">
+    Hello,{{main.data}}
+    <br />
+    <input type="text" ng-model="main.data" />
+</div>
+<div ng-controller="ParentController">
+    This is a {{data}}
+    <br /> parent.data:
+    <input type="text" ng-model="data" />
+    
+</div>
+<div ng-controller="ChildController">
+    This is a {{data}}
+    <br /> child.data:
+    <input type="text" ng-model="data" />
+    <hr />
+</div>

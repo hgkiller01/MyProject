@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>W3CScript</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        #ch12{
+            width:500px;
+        }
+        .myClass{
+            color:aqua;
+            font-size:larger;
+        }
+        p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="">
+        <fieldset id="ch12">
+            <div>
+                <label for="two">2</label>
+                <input type="checkbox" value="2" id="two" name="number">
+            </div>
+            <div>
+                <label for="four">4</label>
+                <input type="checkbox" value="4" id="four" name="number">
+            </div>
+            <div>
+                <label for="six">6</label>
+                <input type="checkbox" value="6" id="six" name="number">
+            </div>
+            <div>
+                <label for="eight">8</label>
+                <input type="checkbox" value="8" id="eight" name="number">
+            </div>
+        </fieldset>
+        <button id="btn">觸發Change事件</button>
+    </form>
+
+    <p><b id="swich">Values: </b><span id="value"></span></p>
+    <p>1</p>
+    <p>23</p>
+    <p>34</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+    <p>0</p>
+    <p>6</p>
+    <p>5</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>3</p>
+    <p>5</p>
+    <p>6</p>
+    <p>3</p>
+    <p>5</p>
+    <p id="position1">"0"</p>
+    <p>76</p>
+    <p>4</p>
+    <p>3</p>
+    <p>1</p>
+    <p>2</p>
+    <p>4</p>
+    <p>4</p>
+    <p>5</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+    <p>23</p>
+    <p>45</p>
+    <p>78</p>
+    <p>90</p>
+    
+    <script>
+        $(function () {
+            $("#position1").text('"' + $(window).scrollTop() + '"');
+            $("input[name=number]").change(function () {
+                $("#swich").toggleClass("myClass");
+                $("#value").empty();
+                $("#value").append($("input[name=number]").map(function () {
+                    if ($(this).is(":checked")) {
+                        return this.id;
+                    }
+                }).get().join(','));
+                var elt = $("#value");
+                var win = $(document);
+                $("#value").prepend("height :" + win.height() + "<br>");
+                $("#value").prepend("innerHeight:" + win.innerHeight() + "<br>");
+                $("#value").prepend("outerHeight :" + win.outerHeight() + "<br>");
+                alert("!");
+                
+            })
+            $("#btn").click(function (event) {
+                $("input[name=number]").trigger("change");
+                event.preventDefault();
+            })
+            $(window).scroll(function () {
+                $("#position1").text('"' + ($(window).scrollTop() + $(window).innerHeight()) + '"');
+            })
+            
+        })
+
+    </script>
+</body>
+</html>

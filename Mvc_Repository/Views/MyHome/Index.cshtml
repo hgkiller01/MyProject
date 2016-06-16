@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=595413120567640";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="fb-root"></div>
+
+
+<div class="fb-like col-xs-12" data-href="http://www.flbk.com.tw/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-like col-xs-12" data-href="http://web.komica.org/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-like col-xs-12" data-href="http://forgetfulbc.blogspot.com/2016/03/wall.html" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+<div class="fb-comments col-xs-12" data-href="@Request.Url" data-width="300" data-numposts="10"></div>

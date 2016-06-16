@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestOpen2</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(function () {
+            
+            $("#GetValue").text($('#sendInput', opener.document).val());
+            $("#CloseBtn").click(function () {
+                
+                $('#WindowReturn', opener.document).text($("#returnVal").val());
+                window.close();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <label id="GetValue"></label>
+        <input name="GetReturnVal" type="text" id="returnVal" />
+        <button id="CloseBtn">傳回母視窗並關閉</button>
+    </div>
+</body>
+</html>

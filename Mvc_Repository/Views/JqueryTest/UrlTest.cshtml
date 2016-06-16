@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "UrlTest";
+}
+@section scripts{
+    <script src="~/Scripts/url.min.js"></script>
+    <script>
+        $(function () {
+
+            $(".price").click(function () {
+                //判斷是否有QueryString
+                if (url("?")) {
+                    //暫存Url
+                    var urlstr = "";
+                    //先取得Data數值放在目前按的開頭加上'?'
+                    urlstr = "?price=" + $(this).attr("data-id");
+                    //假如原本的Qurey就有地點 則加上暫存的後方
+                    if (url("?place"))
+                        urlstr += "&place=" + url("?place")
+                    //一樣的檢查人數的參數
+                    if (url("?people"))
+                        urlstr += "&people=" + url("?people")
+                    //轉址
+                    location.href = urlstr
+                } else {
+                    //若是第一次點選 直接轉址
+                        location.href = "?price=" + $(this).attr("data-id");
+                    }
+            })
+            $(".place").click(function () {
+
+                if (url("?")) {
+                    var urlstr = "";
+                    urlstr = "?place=" + $(this).attr("data-place");
+                    if (url("?price"))
+                        urlstr += "&price=" + url("?price")
+                    if (url("?people"))
+                        urlstr += "&people=" + url("?people")
+                    location.href = urlstr;
+                } else {
+                   location.href = "?place=" + $(this).attr("data-place");
+                }
+            })
+            $(".Customer").click(function () {
+
+                if (url("?")) {
+                    var urlstr = "";
+                    urlstr = "?people=" + $(this).attr("data-people");
+                    if (url("?price"))
+                        urlstr += "&price=" + url("?price")
+                    if (url("?place"))
+                        urlstr += "&place=" + url("?place")
+                    location.href = urlstr;
+                } else {
+                    location.href = "?people=" + $(this).attr("data-people");
+                }
+            })
+            //為已經串入的Query <a>加上背景顏色
+            $(".price").each(function () {
+                if ($(this).attr("data-id") == url("?price")) {
+                    $(this).addClass("Dyellow");
+                }
+            })
+            $(".place").each(function () {
+                if ($(this).attr("data-place") == url("?place")) {
+                    $(this).addClass("Dyellow");
+                }
+            })
+            $(".Customer").each(function () {
+                if ($(this).attr("data-people") == url("?people")) {
+                    $(this).addClass("Dyellow");
+                }
+            })
+            //清除所有的QueryString
+            $("#clearBtn").click(function () {
+                var urlAdress = location.href
+                location.href = urlAdress.slice(0, urlAdress.indexOf("?"));
+                return false;
+            })
+        })
+        
+    </script>
+}
+@section styles{
+    <style>
+        .Dyellow{
+            background-color:yellow;
+        }
+    </style>
+}
+<p> </p>
+<p> </p>
+<a href="javascript:void(0)" class="price" data-id="1">價格1</a>
+<a href="javascript:void(0)" class="price" data-id="2">價格2</a>
+<a href="javascript:void(0)" class="price" data-id="3">價格3</a>
+<a href="javascript:void(0)" class="price" data-id="4">價格4</a>
+<br />
+<a href="javascript:void(0)" class="place" data-place="宜蘭">宜蘭</a>
+<a href="javascript:void(0)" class="place" data-place="花蓮">花蓮</a>
+<a href="javascript:void(0)" class="place" data-place="台北">台北</a>
+<br />
+<a href="javascript:void(0)" class="Customer" data-people="1">一人</a>
+<a href="javascript:void(0)" class="Customer" data-people="2">二人</a>
+<a href="javascript:void(0)" class="Customer" data-people="3">三人</a>
+<br />
+<input type="button" id="clearBtn" value="ClearButton"/>

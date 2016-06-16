@@ -1,0 +1,140 @@
+﻿@model string
+@{
+    Layout = null;
+    string abc = "123";
+    int i;
+    
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/testScript.js"></script>
+<script>
+    
+    //亂數
+    function fnRandom(iModifier) {
+        return parseInt(Math.random() * iModifier);
+    }
+    //設定打開視窗的參數
+    function fnSetValues() {
+        var iHeight = oForm.oHeight.options[
+            oForm.oHeight.selectedIndex].text;
+        if (iHeight.indexOf("Random") > -1) {
+            iHeight = fnRandom(document.body.clientHeight);
+        }
+        var sFeatures = "dialogHeight: " + iHeight + ";";
+        return sFeatures;
+    }
+    function fnOpen() {
+        //呼叫設定參數涵式
+        var sFeatures = fnSetValues();
+
+        //傳遞參數
+        var sDialogArguments = document.getElementById("txtParent").value;
+        //打開視窗
+
+        var retValue = window.showModalDialog('@Url.Action("TestScript3")', sDialogArguments,
+            sFeatures);
+        //顯示返回值
+        //alert(retValue);
+        var divElement = document.getElementById("divChild");
+        divElement.innerHTML = retValue;
+    }
+    function formSubmit() {
+        document.getElementById("myForm").onsubmit = function () { }
+        //document.forms.myForm.submit();
+    }
+    $(function () {
+        $("#selitem").change(function () {
+            $("#selitem option:selected").each(function () {
+                var $this = $(this);
+                if ($this.length) {
+                    var selText = $this.text();
+                    alert(selText);
+                }
+            })
+            
+          //alert(item);
+        })
+        $("#selection").click(function () {
+            alert(window.getSelection().toString());
+            return false;
+        })
+        $("#txtParent").on('input', function () {
+            alert("input事件");
+        });
+        $("#inputtxt").click(function () {
+            $("#txtParent").val("我得到了Text");
+           
+        })
+        $(window).on('beforeunload', function () {
+            return "真的要離開本頁?";
+        });
+        var editor = document.getElementById("editor");
+        editor.contentDocument.designMode = "on";
+        document.getElementById("main").style.color = "red";
+        var elt = document.getElementById("shipping_address");
+        $("body").append("<p id='hj'></p>");
+        $("#hj").append("123");
+    })
+    
+    
+</script>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestScript</title>
+</head>
+<body>
+    <form id="myForm" onsubmit="alert('資料已送出')" onreset="alert('重置資料!')" method="get">
+        <select style="width:100px" id="selitem">
+            <option value="1">第一</option>
+            <option value="2">第二</option>
+            <option value="3">第三</option>
+            <option value="4">第四</option>
+            <option value="5">第五</option>
+            <option value="6">第六</option>
+            <option value="7">第七</option>
+            <option value="8">第八</option>
+        </select>
+
+       <label><input type="checkbox" name="test" value="1" />1</label> 
+       <label><input type="checkbox" name="test" value="2" />2</label> 
+       <label><input type="checkbox" name="test" value="3" />3</label> 
+       <input type="submit"  value="送出"/>
+        <input type="reset" value="重置" />
+    </form>
+    <form name="oForm">
+        Dialog Height
+        <select name="oHeight">
+            <option>-- Random --</option>
+            <option>150</option>
+            <option>200</option>
+            <option>250</option>
+            <option>300</option>
+        </select>
+        Create Modal Dialog Box
+
+        本視窗(父):<input id="txtParent" type="text" />
+        <input type="button" value="打開視窗" onclick="fnOpen()">
+        <button id="inputtxt">輸入</button>
+        來自子視窗:<div id="divChild"> 1</div>
+        <script>
+            document.write("<p>Title:" + document.title);
+            document.write("<br>URL:" + document.URL);
+            document.write("<br>Referred by " + document.referrer);
+            document.write("<br>Modified on " + document.lastModified);
+            document.write("<br>Accessed on " + new Date() + "</p>");
+        </script>
+       <iframe id="editor" src="about:blank"></iframe>
+        <script>
+
+        </script>
+    </form>
+    <button id="selection">你所選擇的文字</button>
+    <p id="main">
+        顯示CSS
+    </p>
+    <a href="http://tw.yahoo.com/">離開本頁</a>
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Razor2";
+}
+@model Mvc_Repository.Models.ViewModel.StudentViewModel
+@using MvcCheckBoxList.Model
+@section scripts{
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.timepicker.js"></script>
+<script src="~/fullcalendar/lib/moment.min.js"></script>
+<script src="~/fullcalendar/fullcalendar.js"></script>
+<script src="~/fullcalendar/lang-all.js"></script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            $('#calendar').fullCalendar({
+                editable: true,
+                lang :'zh-tw',
+                events: [
+                    {
+                        title: 'All Day\r\nEvent',
+                        start: new Date(y, m, 1)
+                    },
+                    {
+                        title: 'Long Event',
+                        start: new Date(y, m, d - 5),
+                        end: new Date(y, m, d - 2)
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: new Date(y, m, d - 3, 16, 0),
+                        allDay: false
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: new Date(y, m, d + 4, 16, 0),
+                        allDay: false
+                    },
+                    {
+                        title: 'Meeting',
+                        start: new Date(y, m, d, 10, 30),
+                        allDay: false
+                    },
+                    {
+                        title: 'Lunch',
+                        start: new Date(y, m, d, 12, 0),
+                        end: new Date(y, m, d, 14, 0),
+                        allDay: false
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: new Date(y, m, d + 1, 19, 0),
+                        end: new Date(y, m, d + 1, 22, 30),
+                        allDay: false
+                    },
+                    {
+                        title: 'Click for Google',
+                        start: new Date(y, m, 28),
+                        end: new Date(y, m, 29),
+                        url: 'http://google.com/'
+                    }
+                ]
+            });
+        });
+    })
+    //設定中文語系
+    $.datepicker.regional['zh-TW'] = {
+        dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+        dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"],
+        monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        prevText: "上月",
+        nextText: "次月",
+        weekHeader: "週"
+    };
+    //將預設語系設定為中文
+    $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
+    $("#datetimepicker").datepicker({
+        dateFormat: "yy/mm/dd",
+        beforeShowDay: function (date) {
+            var day = date.getDay();
+            var comparedate = new Date(2016, 6, 1);
+            return [(day != 5 && day != 6 && date.valueOf() >= comparedate.valueOf())];
+        },
+        minDate: '1'
+    });
+    $("#timepicker").timepicker();
+    $("#test").click(function (event) {
+        $('#timepicker').timepicker('setTime', new Date());
+        console.log(event);
+        event.preventDefault();
+    })
+    
+    console.log(new Date(2016, 0, 1));
+</script>
+}
+@section styles{
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/jquery.timepicker.css" rel="stylesheet" />
+<link href="~/fullcalendar/fullcalendar.css" rel="stylesheet" />
+<style>
+    td{
+        border-color:green;
+    }
+ </style>
+}
+<form action="@Url.Action("Razor2")" method="post">
+    <input type="text" name="date" readonly id="datetimepicker" />
+    <input type="text" name="time" id="timepicker" />
+    <a href="#" id="test">測試</a>
+    <p>
+
+        @Html.CheckBoxListFor(model => model.PostedStudent.StudentIds,
+                        model => model.AvailableStudent,
+                        Studnet => Studnet.StudnetID,
+                        Studnet => Studnet.Name,
+                        model => model.SelectedStudent,
+                        Position.Vertical)
+    </p>
+    <p>
+        <input type="submit" value="送出" />
+    </p>
+</form>
+<div id="calendar"></div>

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index2";
+}
+@section scripts{
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.addOne = function () {
+                $scope.count += 1;
+            }
+        })
+        app.controller("showCtrl", function ($scope) {
+            $scope.isShow = true;
+            $scope.display = "點我隱藏";
+            $scope.showP = function () {
+                $scope.isShow = !($scope.isShow);
+                if ($scope.isShow) {
+                    $scope.display = "點我隱藏";
+                } else {
+                    $scope.display = "點我顯示";
+                }
+            }
+        })
+        app.directive("runoobdirective", function () {
+            return {
+                template: "我在指令構造器中創建!"
+            };
+        });
+    </script>
+}
+<h2>Index2</h2>
+
+<div ng-init="count=0" ng-controller="myCtrl">
+
+    <button ng-click="addOne()">点我！</button>
+
+    <p>{{ count }}</p>
+
+</div>
+<div ng-controller="showCtrl">
+    <button ng-click="showP()">{{display}}</button>
+    <p ng-show="isShow">顯示</p>
+</div>
+<div ng-app="myApp" runoobdirective></div>

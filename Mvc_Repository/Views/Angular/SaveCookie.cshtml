@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "SaveCookie";
+}
+@section scripts{
+<script src="~/Scripts/jquery.cookie.js"></script>
+    <script>
+        
+        $(function () {
+            var checkedbox = []; //宣告陣列存放已經點選的Checkbox值
+            $.cookie.raw = true; //如果在後端讀取不想使用HtmlDecode就要加上這句
+            //判斷Cookie是否有寫入
+            if ($.cookie("Saved")) {
+                //將寫入的cookie轉換為物件
+                checkedbox = JSON.parse($.cookie("Saved"));
+                //輪流讀取已存放的值
+                $.each(checkedbox, function (i, e) {
+                    $("input[name=kk]").each(function () {
+                        //若發現有同樣的值就勾選
+                        if (parseInt($(this).val()) == e) {
+                            $(this).prop("checked", true);
+                        }
+                    })
+                })
+            }
+            //勾選單一Checkbox事件
+            $("input[name=kk]").change(function () {
+                checked = $(this)
+                //判斷是否選取
+                if ($(this).is(':checked')) {
+                    //若是已選取狀態則 加入存放值
+                    checkedbox.push(parseInt($(this).val()));
+                } else {
+                    //若取消選取則移出值
+                    $.each(checkedbox, function (i, e) {
+                        if (e == checked.val()) {
+                            checkedbox.splice(i, 1);
+                        } 
+                    })
+                }
+                $.cookie("Saved",JSON.stringify(checkedbox))
+            })
+            //全選Checkbox事件
+            $("input[name=hh]").change(function () {
+                if ($(this).is(":checked")) {
+                    $("input[name=kk]").each(function () {
+                        $(this).prop("checked", true);
+                    })
+                } else {
+                    $("input[name=kk]").each(function () {
+                        $(this).prop("checked", false);
+                    })
+                }
+                checkedbox.splice(0, checkedbox.length);
+                //因為狀態改變 所以觸發各個的單一選取事件
+                $('input[name=kk]').trigger('change');
+            })
+        })
+    </script>
+}
+
+<label><input type="checkbox" name="hh" />全選</label> <br />
+<label><input type="checkbox" name="kk" value="1" />1</label><br />
+<label><input type="checkbox" name="kk" value="2" />2</label><br />
+<label><input type="checkbox" name="kk" value="3" />3</label><br />
+<label><input type="checkbox" name="kk" value="4" />4</label><br />
+<label><input type="checkbox" name="kk" value="5" />5</label><br />

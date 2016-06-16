@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Module";
+}
+@section scripts{
+    <script>
+        //var book = angular.module('book', []);
+        //book.controller("bookController", function ($scope) {
+        //    $scope.data = "this is a book";
+        //})
+        //var pen = angular.module("pen", []);
+        //pen.controller("penController", function ($scope) {
+        //    $scope.data = "this is a pen";
+        //})
+        //var app = angular.module("myApp", ["book", "pen"]);
+        var abc = [1, 2, 3, 4, 5, 6, 7];
+        var cla = document.getElementsByClassName("pp")
+        
+        for (var i = 1 ; i < cla.length ; i++) {
+            console.log(cla[i].innerHTML);
+        }
+        
+        //$(".pp").each(function (i, e) {
+        //    console.log(i);
+        //    console.log($(e).text());
+        //})
+    </script>
+}
+<h2>Module</h2>
+<div class="pp">a</div>
+<div class="pp">e</div>
+<div class="pp">d</div>
+<div class="pp">c</div>
+<div class="pp">x</div>
+<div class="pp">b</div>
+<div class="pp">m</div>
+@*<div ng-controller="bookController">
+    {{data}}
+</div>
+<div ng-controller="penController">
+    {{data}}
+</div>*@

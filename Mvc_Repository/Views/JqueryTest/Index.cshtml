@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@section scripts{
+<script src="~/Scripts/jquery-ui.js"></script>
+    <script>
+        
+        var logValue = 0;
+        var curse = true;
+        $("#date").datepicker();
+        $("#elem").progressbar({ value: logValue });
+        $(function () {
+            $("#add").click(function () {
+                var barValue = $("#elem").progressbar("value");
+                if (barValue < 100 && curse) {
+                    $("#elem").progressbar("value", logValue += 10);
+                    if (logValue == 100) {
+                        curse = false;
+                    }
+                } else {
+                    $("#elem").progressbar("value", logValue -= 10);
+                    if (logValue == 0) {
+                        curse = true;
+                    }
+
+                }
+            })
+            $("#show").click(function () {
+                alert($("#elem").progressbar("value"));
+            })
+            $("#elem").progressbar({
+                change: function () {
+                    alert("進度已經改變!");
+                }
+            });
+        })
+       
+    </script>
+}
+@section styles{
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+}
+<h2>Index</h2>
+<input type="text" name="date" id="date" />
+<div id="elem">
+</div>
+<input type="button" value="加10%" id="add" />
+<input type="button" value="目前數值" id="show" />
+@Html.Action("TestPartialView")

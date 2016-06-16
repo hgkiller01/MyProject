@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@section scripts{
+    <script>
+        $(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                    alert("bottom!");
+                }
+            });
+            $("#switch").click(function (event) {
+                if ($("#show").hasClass("hideit")) {
+                    $("#show").removeClass("hideit");
+                    $(this).val("隱藏");
+                }
+                else
+                {
+                    $("#show").addClass("hideit");
+                    $(this).val("顯示");
+                }
+                
+                event.preventDefault();
+            })
+            //$("#RightArrow").click(function () {
+            //    var text;
+            //    var value;
+            //    if ($("#LeftSelect").val()) {
+            //        //  取得被選擇項目的文字
+            //        text = $("#LeftSelect").find(":selected").text();
+
+            //        //  取得被選擇項目的值
+            //        value = $("#LeftSelect").find(":selected").val();
+            //        $("#RightSelect").append("<option value=" + value + ">" + text + "</option>");
+            //        //  移除選擇的項目
+            //        $("#LeftSelect").find(":selected").remove();
+            //    } 
+
+            //})
+            //$("#LeftArrow").click(function () {
+            //    var text;
+            //    var value;
+            //    if ($("#RightSelect").val()) {
+            //        //  取得被選擇項目的文字
+            //        text = $("#RightSelect").find(":selected").text();
+
+            //        //  取得被選擇項目的值
+            //        value = $("#RightSelect").find(":selected").val();
+            //        $("#LeftSelect").append("<option value=" + value + ">" + text + "</option>");
+            //        //  移除選擇的項目
+            //        $("#RightSelect").find(":selected").remove();
+            //    }
+            //})
+            $("#RightArrow").click(function () {
+                    $('#LeftSelect :selected').each(function(i, selected){ 
+                       var text = $(selected).text(); 
+                       var value = $(selected).val();
+                        $("#RightSelect").append("<option value=" + value + ">" + text + "</option>");
+                    });
+                    $("#LeftSelect").find(":selected").remove();
+            })
+            $("#LeftArrow").click(function () {
+                $('#RightSelect :selected').each(function (i, selected) {
+                   var text = $(selected).text();
+                   var value = $(selected).val();
+                    $("#LeftSelect").append("<option value=" + value + ">" + text + "</option>");
+                });
+                $("#RightSelect").find(":selected").remove();
+            })
+        })
+        
+        
+    </script>
+}
+@section styles{
+    <style>
+        .showit{
+            display:inline;
+        }
+        .hideit{
+            display:none;
+        }
+    </style>
+}
+<p id="show" class="hideit">This paragraph should be hidden.</p>
+<p>This is a visible paragraph.</p>
+<p><b>Note:</b> The hidden attribute is not supported in IE10 or earlier versions.</p>
+<input type="button" id="switch" value="顯示" />
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+<div style="display:inline-block">
+    <select size="5" style="width:100px" id="LeftSelect">
+        <option value="1">菜刀</option>
+        <option value="2">鍋子</option>
+        <option value="3">水果</option>
+        <option value="4">生鮮</option>
+        <option value="5">餅乾</option>
+    </select>
+</div>
+<div style="display:inline-block">
+    <button id="RightArrow">=></button><br />
+    <button id="LeftArrow"><=</button>
+</div>
+
+<div style="display:inline-block">
+    <select size="5" style="width:100px" id="RightSelect">
+        <option value="6">湯匙</option>
+        <option value="7">水盆</option>
+        <option value="8">馬桶</option>
+        <option value="9">浴缸</option>
+        <option value="10">掃把</option>
+    </select>
+</div>
+<myspan>test</myspan>
