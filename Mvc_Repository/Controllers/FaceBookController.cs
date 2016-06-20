@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using Mvc_Repository.Helper;
 
 namespace Mvc_Repository.Controllers
 {
@@ -27,6 +28,7 @@ namespace Mvc_Repository.Controllers
                , Server.UrlEncode("http://localhost:14665/FaceBook/Return")
                , client_secret
                , code);
+                
                 HttpWebRequest request2 = (HttpWebRequest)HttpWebRequest.Create("https://graph.facebook.com/oauth/access_token?" + posted);
                 request2.Method = "GET";
                 var abc = Sendit(request2);

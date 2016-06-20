@@ -6,6 +6,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using MvcLibrary.Utility;
+
 
 namespace Mvc_Repository.Controllers
 {
@@ -18,6 +20,7 @@ namespace Mvc_Repository.Controllers
         {
             return View();
         }
+        [ValidateInput(false)]
         public ActionResult Return(string code)
         {
             if (!string.IsNullOrEmpty(code))

@@ -215,8 +215,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CoordinateUtility.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\ImageProcess.cs" />
+    <Compile Include="Helper\JsonClass.cs" />
     <Compile Include="Helper\radioHelper.cs" />
+    <Compile Include="Helper\RequestHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Action_D.cs">
       <DependentUpon>Model2.tt</DependentUpon>
@@ -1987,6 +1991,12 @@
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcLibrary\MvcLibrary.csproj">
+      <Project>{213f8bb3-d62f-4373-aadc-70a67fcb2870}</Project>
+      <Name>MvcLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
