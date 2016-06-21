@@ -7,11 +7,11 @@ using System.Web;
 
 namespace Mvc_Repository.Helper
 {
-    public class RequestHelper
+ class RequestHelper
 {
-        public HttpWebRequest myRequest { get; set; }
-        public string PostedBody { get; set; }
-        public string Url { get; set; }
+        private HttpWebRequest myRequest { get; set; }
+        private string PostedBody { get; set; }
+        private string Url { get; set; }
         public enum Method
         {
             Post,

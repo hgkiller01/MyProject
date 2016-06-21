@@ -209,6 +209,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductssController.cs" />
+    <Compile Include="Controllers\selectListsController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
     <Compile Include="Controllers\ViewSwitcherController.cs" />
     <Compile Include="EntityHelper.cs" />
@@ -1847,6 +1848,8 @@
     <Content Include="Views\Home\DOMTest.cshtml" />
     <Content Include="Views\FaceBook\Index.cshtml" />
     <Content Include="Views\Google\Index.cshtml" />
+    <Content Include="Views\selectLists\Index.cshtml" />
+    <Content Include="Views\Shared\_LayOutView.cshtml" />
     <TypeScriptCompile Include="Scripts\MyScripts.ts" />
     <Content Include="WebForm1.aspx" />
     <EntityDeploy Include="Models\Model1.edmx">

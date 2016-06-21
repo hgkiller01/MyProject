@@ -13,7 +13,20 @@ namespace Mvc_Repository.Controllers
 
         public ActionResult Index()
         {
-            
+            string SQL = @"select *, ROUND(ACOS(SIN(RADIANS('25.0632256')) * 
+                                SIN(RADIANS(CAST ( LandMark_Gps_X AS float ))) +
+                                 COS(RADIANS('25.0632256')) * 
+                                 COS(RADIANS(CAST ( LandMark_Gps_X AS float ))) * 
+                                 COS(RADIANS('121.5655313' - 
+                                 CAST ( LandMark_Gps_Y AS float )))) * 6372.8, 1) AS distance ,
+                                 (select top 1 IM.Image_Path Image_Path from Image_R IR 
+                                 join Image_M IM on IR.Image_ID = IM.Image_ID 
+                                 where IR.Obj_ID = LM.LandMark_ID and IR.Target_Type = 'L' and IM.IsEnable = 1
+                                 and IM.IsExternalLink = 0) as Image_Path
+                                from LandMark_M LM join LandMark_D LD on LM.LandMark_ID = LD.LandMark_ID
+                                where  LD.Lang = 'zh-TW' and LM.IsEnable = 1 and LM.LandMark_Type = 1 
+								order by distance
+                                offset 10 * 0 rows fetch next 10 rows only";
             return View();
         }
 
